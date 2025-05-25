@@ -40,6 +40,9 @@ builder.Services.AddSingleton<JwtAuthService>();
 builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<UseresDAL>();
 builder.Services.AddScoped<UsersDSL>();
+builder.Services.AddScoped<TodoDAL>();
+builder.Services.AddScoped<TodoDSL>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

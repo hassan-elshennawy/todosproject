@@ -18,7 +18,7 @@ namespace todosproject.Entities
         public Todo() 
         {
             IsDone = false;
-            CreatedAt = DateTime.Now;
+            CreatedAt = DateTime.UtcNow.AddHours(3);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using todosproject.DSL;
 using todosproject.Entities.DTOs;
@@ -33,7 +32,7 @@ namespace firstDotNetProject.Controllers
         [HttpGet]
         [Route("admin")]
         [Authorize]
-        [RoleAuth(UserRole.Admin)]
+        [RoleAuth(UserRole.NUser)]
         public async Task<ActionResult<string>> adminPage()
         {
             return "you are admin";
@@ -48,7 +47,6 @@ namespace firstDotNetProject.Controllers
         {
             return "you are admin";
         }
-
 
     }
 }

@@ -38,15 +38,15 @@ namespace todosproject.DAL
         public async Task<List<Todo>> GetAllTodos(int Id)
         {
            var todos = await _context.Todos
-                .Where(t => t.Id == Id)
+                .Where(t => t.UserId == Id)
                 .ToListAsync();
             return todos;
         }
 
-        public async Task<List<Todo>> GetNotCompletedTodos(int Id)
+        public async Task<List<Todo>> GetPendingTodos(int Id)
         {
             var todos = await _context.Todos
-                .Where(t => t.Id == Id && t.IsDone == false)
+                .Where(t => t.UserId == Id && t.IsDone == false)
                 .ToListAsync();
             return todos;
         }
@@ -54,7 +54,7 @@ namespace todosproject.DAL
         public async Task<List<Todo>> GetCompletedTodos(int Id)
         {
             var todos = await _context.Todos
-                .Where(t => t.Id == Id && t.IsDone == true)
+                .Where(t => t.UserId == Id && t.IsDone == true)
                 .ToListAsync();
             return todos;
         }
@@ -66,6 +66,16 @@ namespace todosproject.DAL
                 throw new ArgumentNullException();
             }
             _context.Todos.Remove(todo);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateTodo(Todo todo)
+        {
+            if (todo == null)
+            {
+                throw new ArgumentNullException();
+            }
+            _context.Todos.Update(todo);
             await _context.SaveChangesAsync();
         }
 
